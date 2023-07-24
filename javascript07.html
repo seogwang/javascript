@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 기본 07 - 조건문/반복문</title>
+</head>
+<body>
+    <h2>과목별 점수</h2>
+    <ul class="lst" id="lst1">
+        <li class="item" id="s1">80</li>
+        <li class="item" id="s2">100</li>
+        <li class="item" id="s3">90</li>
+        <li class="item" id="s4">95</li>
+        <li class="item" id="s5">85</li>
+    </ul>
+    <hr>
+    <!-- div#tot+div#avg+div#pan+div#hak+div#remark+div#sang -->
+    <div id="tot"></div>
+    <div id="avg"></div>
+    <div id="pan"></div>
+    <div id="hak"></div>
+    <div id="remark"></div>
+    <div id="sang"></div>
+    <div class="btn-group">
+        <button type="button" onclick="compute()"></button>
+    </div>
+
+    <script>
+    //총점(tot) : 다섯 과목 점수의 합계
+    //평균(avg) : 총점 / 5
+    //판정(pan) : 모든 점수가 80점 이상이고, 평균이 70점 이상이면, "합격", 아니면 "불합격"
+    //학점(hak) : 평균이 90이상이면, "A", 80이상이면, "B", 70점이상이면, "C", 70미만이면 "F"
+    //참고사항(remark) : 학점이 "A"이면, "고득점", "B"이면, "우수", "C"이면, 보통,
+    //              기타는 "재평가"
+    //과목우수상(sang) : 어느 한 과목이라도 100이면, "과목우수", 아니면, "해당없음"
+    var tot = document.getElementById("tot");
+    var avg = document.getElementById("avg");
+    var pan = document.getElementById("pan");
+    var hak = document.getElementById("hak");
+    var remark = document.getElementById("remark");
+    var sang = document.getElementById("sang");
+
+    var s1 = document.getElementById("s1").value;
+    var s2 = document.getElementById("s2").value;
+    var s3 = document.getElementById("s3").value;
+    var s4 = document.getElementById("s4").value;
+    var s5 = document.getElementById("s5").value;
+
+    s1 = parseInt(s1);
+    s2 = parseInt(s2);
+    s3 = parseInt(s3);
+    s4 = parseInt(s4);
+    s5 = parseInt(s5);
+
+    function compute(){
+        tot.innerText = s1+s2+s3+s4+s5;
+        avg.innerText = tot/5;
+        if(s1 >= 80 && s2 >= 80 && s3 >= 80 && s4 >= 80 && s5 >= 80 && avg >= 70) {
+            pan.innerText = "합격";
+        } else { pan.innerText = "불합격"; }
+        if(avg >= 90){
+            hak.innerText = "A";
+        } else if (avg >= 80) {
+            hak.innerText = "B";
+        } else if (avg >= 70) {
+            hak.innerText = "C";
+        } else {
+            hak.innerText = "F";
+        }
+        if (hak == "A") {
+            remark.innerText = "고득점"
+        } else if (hak == "B") {
+            remark.innerText = "우수"
+        } else if (hak == "C") {
+            remark.innerText = "보통"
+        } else {
+            remark.innerText = "재평가"
+        }
+        if (s1 == 100 || s2 == 100 || s3 == 100 || s4 == 100 || s5 == 100 ) {
+            sang.innerText = "과목우수"
+        } else { 
+            sang.innerText = "해당없음"
+         }
+    }
+    </script>
+</body>
+</html>
