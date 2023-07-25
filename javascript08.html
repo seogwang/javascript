@@ -1,0 +1,173 @@
+<!--
+    2023.07.25(화) 5교시
+
+    ##이벤트
+    ㄱ. 종류
+    1) 인라인 이벤트
+    2) 스크립트 이벤트
+
+    ㄴ. 구성요소
+    1) 타겟
+    2) 핸들러
+    3) 서비스
+
+    이벤트 종류가 많다.
+    on 입력하면 박스 뜬다. 그것 보고 할 수 있다.
+
+    *인라인 이벤트
+    이벤트 핸들러 : on으로 시작한다(on/off)
+    *스크립트 이벤트
+
+    //이벤트(Event) : 사용자가 어떤 특정 행위를 했을 때의 사건.
+    //구예진님이 버튼3을 마우스로 클릭
+    //버튼3 => 이벤트타겟
+    //클릭 => 이벤트핸들러
+    //개발자는 버튼3을 마우스로 눌렀을 경우 해당 서비스를 진행하게 되는데
+    //이처럼 이벤트란, 이벤트 타겟과 이벤트 핸들러, 서비스를 모두 합쳐 말함.
+    //이벤트 적용방법 :
+    // 1) 인라인이벤트란 : 해당하는 요소(태그)에 필요한 이벤트핸들러 속성(attribute)
+    // 직접 기술하는 것.
+    // 2) 스크립트 이벤트 : 스크립트 태그의 안쪽에 필요한 이벤트핸들러를 해당 요소를
+    // 선택하여 필요한 이벤트를 적용하는 것.
+    // 이벤트 종류 : 마우스 이벤, 키도브 이벤트, 폼 이벤트, 기타 이벤트
+    // 1. 마우스 이벤트 : click, dblclick, mouseover/hover/mouseenter, mouseout/mouseleave,
+    // mousedown, mouseup, mousemove, contextmenu, scroll(wheel=mousewheel)
+    // 2. 키보드 이벤트 : keypress, keydown, keyup
+    // 3. 폼 관련 이벤트 : focus, blur, change, submit, reset, select
+    // 4. 기타 이벤트 : load, abort, unload, resize, scroll(스크롤바를 움직일 때)
+
+    쿼리셀렉터, ID는 한개
+    태그 네임, 클래스 네임 : 많은 것이 있을 때 쓴다.
+
+    *colspan : 표 합치기
+    *폼 태그 옵션에서 method="post" 이것 꼭 써줘야 한다.
+    innerText : 태그 안의 텍스트 가져 오는 것.
+    value : 폼 요소 안의 값을 가져오는 것.
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 기본08 - 이벤트</title>
+</head>
+<body>
+    <div id="box1" class="box" onclick="clk1()">박스1</div>
+    <div id="box2" class="box" ondblclick="clk2('김기태')" >박스2</div>
+    <div id="box3" class="box">박스3</div>
+    <div id="box4" class="box">박스4</div>
+    <div id="box5" class="box">박스5</div>
+    <div id="box6" class="box">박스6</div>
+    <div id="box7" class="box">박스7</div>
+    <div id="box8" class="box">박스8</div>
+    <hr>
+    <div id="res1" class="res"></div>
+    <hr>
+    <script>
+        function clk1(){
+            alert("혼자옵서예~!");
+        }
+        function clk2(a){
+            alert(a+"가 오셨군요~! 더블클릭");
+        }
+        var box = document.getElementsByClassName("box"); // Class name은 이것에 필요하다. 상품 개수가 6만개면 이 세줄로 코딩을 끝낸다.
+        for(var i=2;i<box.length;i++){
+            box[i].addEventListener("click", function(e){
+                alert(e.target.innerText);
+            });
+        }
+    </script>
+    <form action="" id="join_form" onsubmit="return join(this)" method="post">
+        <fieldset>
+            <legend>가입 정보</legend>
+            <table>
+                <tbody>
+                    <!-- tr*4>(th>label[for=filed$]+(td>input[name=field$]#field$)) -->
+                    <tr>
+                        <th>
+                            <label for="filed1">아이디</label>
+                            <td><input type="text" name="field1" id="field1" required autofocus></td>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="filed2">비밀번호</label>
+                            <td><input type="password" name="field2" id="field2" required></td>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="filed3">비밀번호 확인</label>
+                            <td><input type="password" name="field3" id="field3" required></td>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="filed4">이름</label>
+                            <td><input type="text" name="field4" id="field4" required></td>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="filed5">이메일</label>
+                            <td><input type="email" name="field5" id="field5" required></td>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="가입">
+                            <input type="reset" value="취소">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+
+    </form> 
+    <script>
+        //폼 입력값에 대한 유효성. 검증 요즘에는 이렇게 간단해졌다.
+        //예전에는 아래와 같이 다 썼어야 했다. 그러나 요즘은 해당 입력칸에 required 처리하면 된다.
+        function join(frm){
+            // if(frm.field1.value==""){
+            //     alert("아이디가 입력되지 않았습니다.");
+            //     frm.field1.focus();
+            //     return false;
+            // }
+            // if(frm.field2.value==""){
+            //     alert("비밀번호가 입력되지 않았습니다.");
+            //     frm.field2.focus();
+            //     return false;
+            // }
+            // if(frm.field3.value==""){
+            //     alert("비밀번호 확인이 입력되지 않았습니다.");
+            //     frm.field3.focus();
+            //     return false;
+            // }
+            // if(frm.field4.value==""){
+            //     alert("이메일이 입력되지 않았습니다.");
+            //     frm.field4.focus();
+            //     return false;
+            // }
+            // if(frm.field5.value==""){
+            //     alert("이름이 입력되지 않았습니다.");
+            //     frm.field5.focus();
+            //     return false;
+            // }
+            if(frm.field3.value==frm.field2.value){
+                alert("비밀번호와 비밀번호 확인이 다릅니다.")
+                return false;
+            }
+        }
+
+        // 이 방식은 스크립트 방식.
+        // var form = document.getElementById("join_form");
+        // form.addEventListener("submit", function(){
+
+
+        // });
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!-- 
+    2023.07.25(화) 7교시
+
+    window가 가장 큰 객체이고 나머지가 아래 객체다.
+    가장 많이 알아야 하는 것
+    window.open
+    window.close
+    window.print
+
+    html : 뼈대
+    css : 치장
+    javascript : 총체적으로 제어
+
+ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 기본10 - screen & window</title>
+</head>
+<body>
+    <div id="btn1">객체 속성 출력</div>
+    <div id="btn2">객체 속성 인쇄</div>
+    <div id="btn3" onclick="javascript:window.close()">창 닫기</div>
+    <div id="res"></div>
+    <script>
+        var btn1 = document.getElementById("btn1"); // 선택자를 가져온다?
+        var btn2 = document.getElementById("btn2");
+        var res = document.getElementById("res");
+        btn1.addEventListener("click", function(){
+            req();
+        });
+        btn2.addEventListener("click", function(){
+            window.print(); // 인쇄창 띄움
+        });
+        function req () {
+            var html = "";
+            for(var key in window){ // for문을 이용해서 window 객체의 key 목록과 key 값을 가져온다.
+                html+="<p>"+key+" : "+window[key]+"</p>";
+            }
+            res.innerHTML = html; // for문을 통해 계속 추가된 html 값을 res 변수를 활용해 res태그에 넣어준다.
+        }
+    </script>
+</body>
+</html>
