@@ -4,6 +4,7 @@
 
     Interval
 
+    레이아웃, 레이어, absolute, relative 공부
  -->
 
 
@@ -14,13 +15,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자바스크립트 응용02 - 디지털 시계</title>
     <style>
-        @font-face {
+        @font-face {            /* 폰트 쓰려면 폰트 페이스 지정 */
             font-family: "digital1";
             src: url(./fonts/DS-DIGI.TTF);
         }
         #watch { font-family: "digital1", sans-serif; display: block; 
         padding: 10px; background-color: #333; color:#fff; font-size: 60px;
-        width:280px; margin: 28px; }
+        width:280px; margin: 28px; text-align: center; }
         #wrap { clear:both; width: 400px; margin:10px auto; height: 140px; box-shadow: 2px 2px 1px #333;}
     </style>
 </head>
@@ -29,7 +30,7 @@
         <span id="watch"></span>
     </div>
     <script>
-        var watch = document.getElementById("watch");
+        var watch = document.getElementById("watch"); // 보통 자바스크립트 컨트롤 할 때 변수 지정
         function tt(){
             var today = new Date();     // 년월일시분초가 들어가 있다. 이것을 하나씩 끄집어 내면 된다.
             var hour = today.getHours();
@@ -56,7 +57,7 @@
             } else {
                 ss = second;
             }
-            watch.innerHTML = ampm + " " + hh + " : " + minute + " : " + second;
+            watch.innerHTML = ampm + " " + hh + ":" + minute + ":" + second;
         }
         tt();
         var intv = setInterval(function() {tt();}, 1000); // 일정 간격을 두고 실행

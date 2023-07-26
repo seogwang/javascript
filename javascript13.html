@@ -1,0 +1,54 @@
+<!-- 
+    2023.07.26(수) 5교시
+    ##흐름제어
+    location, history 클래스
+
+    모든 클래스에는 멤버, 메소드, 생성자가 있는 것이다.
+    history는 방문 기록을 따라서 간다.
+
+    아래 6가지는 기억!
+    location.reload()
+    location.replace()
+    location.assign()
+    history.back()
+    history.forward()
+    history.go()
+
+    option에서 value를 꼭 ""으로 넣어줘야 한다(속성이어서).
+
+    스크립트를 다른 사람이 못보도록 js 파일로 만들어서
+    스크립트 태그 안에 src로 연결한다.
+    이것을 3~4단계 하면 왠만한 사람들은 추적을 안 한다.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 응용03 - 흐름 제어</title>
+</head>
+<body>
+    <div class="ntn_group">
+        <button class="btn" id="btn1">정보 출력</button>
+        <button class="btn" id="btn2">현재 URL</button>
+        <button class="btn" id="btn3">새로 고침</button>
+        <button class="btn" id="btn4">사이트 이동</button>
+        <button class="btn" id="btn5">이동</button>
+        <button class="btn" id="btn6">뒤로가기</button>
+        <button class="btn" id="btn7">앞으로 가기</button>
+        <button class="btn" id="btn8">원하는 데로 가기</button>
+    </div>
+    <div id="res"></div> <!-- 출력할 섹터? 공간 만들어준다. -->
+    <div id="res2"></div> <!-- 출력할 공간-->
+    <select name="sel" id ="sel" onchange="moving()"> <!-- 바꿨을 때 이동-->
+        <option value="">--- 선택 안함 ---</option>
+        <option value="http://www.naver.com">네이버</option>
+        <option value="http://www.daum.net">다음</option>
+        <option value="http://www.google.com">구글</option>
+    </select>
+    <button id="btn9" onclick="javascript:history.go(-1)">뒤로가기 - 버튼9</button>
+    <button id="btn10" onclick="javascript:location.reload()">새로고침 - 버튼 10</button>
+    <script src="js13.js"></script>
+</body>
+</html>

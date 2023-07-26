@@ -1,0 +1,49 @@
+<!-- 
+    2023.07.26(수) 6교시
+    ##navigator
+
+    기기 판별 함수는 공식. 정해져 있어서 그냥 갖다 써야 한다.
+    기기 정보, 브라우저 정보 가져온다.
+
+    *onclick : 속성값을 주면 클릭 on 됐을 때, 실행할 함수를 넣어준다.
+
+    *해당 클래스? 안의 맴버(속성)와 메소드가 궁금하면 for문을 이용해서 key와 값을 가져와서 출력해본다.
+    *innerHtml, innerText를 통해서 선택한 태그에 값을 넣어 줄 수 있다.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 응용04 - navigator</title>
+</head>
+<body>
+    <div id="dics" ></div>
+    <button id="btn1" onclick="nav()">기기 판별</button>
+    <button id="btn2" onclick="info()">브라우저 정보</button>
+    <div id="res"></div>
+    <script>
+    var dics = document.getElementById("dics");
+    var res = document.getElementById("res");
+    function nav(){
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        // 모바일을 쓰면 True, 아니면 False가 나온다.
+        // navigator : 브라우저를 나타낸다.
+        // 기기 추가 하려면 | 기호 쓰고 추가 하면 된다.
+        if(isMobile) {
+            dics.innerHTML = "<h2>모바일 기기</h2>";
+        } else {
+            dics.innerHTML = "<h2>데스크탑</h2>";
+        }
+    }
+    // 테스트 할 때는 요소 검사에서 기기를 변경해서 해준다.
+    function info() {
+        var html = "";
+        for(var key in navigator){
+            html += "<h2>"+key+":"+navigator[key]+"</h2>"; // 거의 맵 구조이다.
+        }
+        res.innerHTML = html;
+    }
+    </script>
+</body>
+</html>
